@@ -1,33 +1,5 @@
-// const products=[
-//   {
-//       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-//         name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-//         rating: {
-//           stars: 4.5,
-//           count: 87
-//         },
-//         priceCents: 1090,
-//     },
-//     {
-//       image: "images/products/intermediate-composite-basketball.jpg",
-//       name: "Intermediate Size Basketball",
-//       rating: {
-//         stars: 4,
-//         count: 127
-//       },
-//       priceCents: 2095, 
-//     },
-//     {
-//       image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-//         name: "Adults Plain Cotton T-Shirt - 2 Pack",
-//         rating: {
-//           stars: 4.5,
-//           count: 56
-//         },
-//         priceCents: 799,
-//     }
-// ]
 let temp='';
+let cart_count=0;
 products.forEach(product => 
     {
      temp+=`<div class="product-container">
@@ -37,7 +9,7 @@ products.forEach(product =>
           </div>
 
           <div class="product-name limit-text-to-2-lines">
-            ${product.name}
+           ${product.name}
           </div>
 
           <div class="product-rating-container">
@@ -47,7 +19,6 @@ products.forEach(product =>
               ${product.rating.count}
             </div>
           </div>
-
           <div class="product-price">
             $${(product.priceCents/100).toFixed(2)}
           </div>
@@ -74,9 +45,57 @@ products.forEach(product =>
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary add-button" data-product-id=${(product.id)}>
             Add to Cart
           </button>
         </div>`
 });
+// --------------------- CART- FUNCTIONALITY----------------//
+cart_count=JSON.parse(localStorage.getItem('cart'));
 document.querySelector('.products-grid').innerHTML=temp;
+let button=document.querySelectorAll('.add-button');
+button.forEach((log)=>
+{
+  log.addEventListener('click',()=>updatecount_addcartItems(log))
+})
+function updatecount_addcartItems(log)
+{
+  let matched_item;
+  cart_count++;
+  document.querySelector('.cart-quantity').innerHTML=cart_count;
+  localStorage.setItem('cart',JSON.stringify(cart_count));
+  const id=log.dataset.productId;
+  cart.forEach((cart_items)=>
+  {
+    if(cart_items.cart_id===id)
+    {
+      matched_item=cart_items;
+    }
+  })
+  if(matched_item)
+  {
+    matched_item.cart_quantity++;
+  }
+  else
+  {
+    cart.push({
+      cart_id:id,
+      cart_quantity:1
+    })
+  }
+  console.log(cart);
+}
+const re=document.querySelector('.reset');
+re.addEventListener('click',reset);
+function reset()
+{
+  cart_count=0;
+  localStorage.removeItem('cart');
+  document.querySelector('.cart-quantity').innerHTML=cart_count;
+}
+window.onload=function()
+{
+  cart_count=JSON.parse(localStorage.getItem('cart'));
+  document.querySelector('.cart-quantity').innerHTML=cart_count;
+}
+// ------------------------------------------------------------------//

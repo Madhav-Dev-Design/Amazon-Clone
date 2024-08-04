@@ -1,3 +1,5 @@
+import {products} from '../data/products.js'
+import {cart,addcartItems,reset} from '../data/cart.js'
 let temp='';
 let cart_count=0;
 products.forEach(product => 
@@ -45,57 +47,18 @@ products.forEach(product =>
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary add-button" data-product-id=${(product.id)}>
+          <button class="add-to-cart-button button-primary add-button js-add-button" data-product-id=${(product.id)}>
             Add to Cart
           </button>
         </div>`
 });
-// --------------------- CART- FUNCTIONALITY----------------//
-cart_count=JSON.parse(localStorage.getItem('cart'));
 document.querySelector('.products-grid').innerHTML=temp;
-let button=document.querySelectorAll('.add-button');
+// --------------------- CART- FUNCTIONALITY----------------//
+let button=document.querySelectorAll('.js-add-button');
 button.forEach((log)=>
 {
-  log.addEventListener('click',()=>updatecount_addcartItems(log))
+  log.addEventListener('click',()=>addcartItems(log))
 })
-function updatecount_addcartItems(log)
-{
-  let matched_item;
-  cart_count++;
-  document.querySelector('.cart-quantity').innerHTML=cart_count;
-  localStorage.setItem('cart',JSON.stringify(cart_count));
-  const id=log.dataset.productId;
-  cart.forEach((cart_items)=>
-  {
-    if(cart_items.cart_id===id)
-    {
-      matched_item=cart_items;
-    }
-  })
-  if(matched_item)
-  {
-    matched_item.cart_quantity++;
-  }
-  else
-  {
-    cart.push({
-      cart_id:id,
-      cart_quantity:1
-    })
-  }
-  console.log(cart);
-}
 const re=document.querySelector('.reset');
 re.addEventListener('click',reset);
-function reset()
-{
-  cart_count=0;
-  localStorage.removeItem('cart');
-  document.querySelector('.cart-quantity').innerHTML=cart_count;
-}
-window.onload=function()
-{
-  cart_count=JSON.parse(localStorage.getItem('cart'));
-  document.querySelector('.cart-quantity').innerHTML=cart_count;
-}
 // ------------------------------------------------------------------//

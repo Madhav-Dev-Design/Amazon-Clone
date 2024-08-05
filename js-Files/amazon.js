@@ -58,11 +58,11 @@ let button=document.querySelectorAll('.js-add-button');
 button.forEach((log)=>
 {
   log.addEventListener('click',()=>
-    {addcartItems(log);
-    document.querySelector('.js-cart-quantity').innerHTML=update();
+    {
+      addcartItems(log);
+      document.querySelector('.js-cart-quantity').innerHTML=update();
     })
 })
 window.onload=document.querySelector('.js-cart-quantity').innerHTML=update();
 const re=document.querySelector('.reset');
 re.addEventListener('click',reset);
-// ------------------------------------------------------------------//

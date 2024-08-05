@@ -45,3 +45,18 @@ export function update()
   localStorage.setItem('cart',JSON.stringify(cart));
   return quantity;
 }
+export function del_cart(Id)
+{
+  let updated_cart=[];
+  cart.forEach((item)=>
+  {
+    if(item.cart_id!==Id)
+    {
+      updated_cart.push(item);
+    }
+  })
+  cart=updated_cart;
+  console.log(cart);
+  // ----------Updates_the_quantity_of_the cart---------------//
+  update_cart();
+}

@@ -1,4 +1,16 @@
-export let cart=JSON.parse(localStorage.getItem('cart'))||[];
+export let cart=JSON.parse(localStorage.getItem('cart'))||
+[
+  {
+    cart_id:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    cart_quantity:1,
+    option_id:'1'
+  },
+  {
+    cart_id:'15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    cart_quantity:2,
+    option_id:'2'
+  }
+];
 let quantity=0;
 export function addcartItems(log)
 {
@@ -19,7 +31,8 @@ export function addcartItems(log)
   {
     cart.push({
       cart_id:id,
-      cart_quantity:1
+      cart_quantity:1,
+      option_id:'1'
     })
   }
   update_cart();

@@ -1,11 +1,14 @@
 import {del_cart,cart} from '../data/cart.js'
 import {products} from './products.js'
 import {format_currency} from '../js-Files/Utilities/format.js'
-let cart_id;
-let matching_product;
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
+import { deliveryoptions } from './deliveryOptions.js'
+
 let html=''
 cart.forEach(cart_items => 
-{
+  {
+  let cart_id;
+  let matching_product;
     cart_id=cart_items.cart_id;
     products.forEach((product_item)=>
     {
@@ -14,7 +17,7 @@ cart.forEach(cart_items =>
     })
     html+=`<div class="cart-item-container cart-container-${matching_product.id}">
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${change_date(cart_items.option_id)}
             </div>
 
             <div class="cart-item-details-grid">
@@ -40,50 +43,11 @@ cart.forEach(cart_items =>
                   </span>
                 </div>
               </div>
-
               <div class="delivery-options">
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                <div class="delivery-option">
-                  <input type="radio" checked
-                    class="delivery-option-input"
-                    name="delivery-option-${matching_product.id}">
-                  <div>
-                    <div class="delivery-option-date">
-                      Tuesday, June 21
-                    </div>
-                    <div class="delivery-option-price">
-                      FREE Shipping
-                    </div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${matching_product.id}">
-                  <div>
-                    <div class="delivery-option-date">
-                      Wednesday, June 15
-                    </div>
-                    <div class="delivery-option-price">
-                      $4.99 - Shipping
-                    </div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${matching_product.id}">
-                  <div>
-                    <div class="delivery-option-date">
-                      Monday, June 13
-                    </div>
-                    <div class="delivery-option-price">
-                      $9.99 - Shipping
-                    </div>
-                  </div>
-                </div>
+                ${generating_delivery_options(matching_product.id,cart_items)}
               </div>
             </div>
           </div>
@@ -103,4 +67,52 @@ del_array.forEach((item)=>
     container.remove();
   })
 })
-// ---------------------------------------------------------//
+//----------------Day-Js------------------------
+function get_date(delivery_days)
+{
+    const today=dayjs();
+    const delivery_date=today.add(delivery_days,'day');
+    const formatted_delivery_date=delivery_date.format("dddd, MMMM D ");
+    return formatted_delivery_date;
+}
+// -----------------Delivery-Options----------------//
+function generating_delivery_options(matching_product_id,cart_items)
+{
+  let html='';
+  deliveryoptions.forEach((delivery)=>
+  {
+    const ischecked=delivery.delivery_Id===cart_items.option_id;
+    const formatted_delivery_date=get_date(delivery.delivery_days);
+    const shipping_charge = delivery.priceCents===0 ? 'FREE':`$${format_currency(delivery.priceCents)}`
+    html+=`
+    <div class="delivery-option">
+      <input type="radio"
+      ${ischecked?'checked': ''}
+        class="delivery-option-input"
+        name="delivery-option-${matching_product_id}">
+      <div>
+        <div class="delivery-option-date">
+          ${formatted_delivery_date}
+        </div>
+        <div class="delivery-option-price">
+          ${shipping_charge} - Shipping
+        </div>
+      </div>
+    </div>`
+  })
+  return html;
+}
+// ---------------------Changing the Date-----------------------------
+function change_date(Id)
+{
+  let matched;
+  deliveryoptions.forEach((delivery_item)=>
+  {
+    if(delivery_item.delivery_Id===Id)
+    {
+      matched=delivery_item;
+    }
+  })
+  console.log(get_date(matched.delivery_days));
+  return get_date(matched.delivery_days);
+}

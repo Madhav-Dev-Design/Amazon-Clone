@@ -88,8 +88,8 @@ cart.forEach(cart_items =>
             </div>
           </div>
     `
-    document.querySelector('.order-summary').innerHTML=html;
-});
+  });
+document.querySelector('.order-summary').innerHTML=html;
 // -------------------Delete-Functionality----------------//
 let del_array=document.querySelectorAll('.js-delete-link');
 let del_Id;

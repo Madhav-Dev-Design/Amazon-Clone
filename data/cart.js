@@ -34,15 +34,12 @@ export function reset()
 }
 function update_cart()
 {
-  quantity=0;
-  cart.forEach((items)=>quantity+=items.cart_quantity)
   localStorage.setItem('cart',JSON.stringify(cart));
 }
-export function update()
+export function quantity_update()
 {
   quantity=0;
   cart.forEach((items)=>quantity+=items.cart_quantity)
-  localStorage.setItem('cart',JSON.stringify(cart));
   return quantity;
 }
 export function del_cart(Id)

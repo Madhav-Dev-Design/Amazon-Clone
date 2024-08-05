@@ -1,5 +1,5 @@
 import {products} from '../data/products.js'
-import {update,addcartItems,reset} from '../data/cart.js'
+import {quantity_update,addcartItems,reset} from '../data/cart.js'
 import { format_currency } from './Utilities/format.js';
 let temp='';
 products.forEach(product => 
@@ -60,9 +60,9 @@ button.forEach((log)=>
   log.addEventListener('click',()=>
     {
       addcartItems(log);
-      document.querySelector('.js-cart-quantity').innerHTML=update();
+      document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
     })
 })
-window.onload=document.querySelector('.js-cart-quantity').innerHTML=update();
+window.onload=document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
 const re=document.querySelector('.reset');
 re.addEventListener('click',reset);

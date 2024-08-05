@@ -29,15 +29,19 @@ export function reset()
   quantity=0;
   cart=[];
   localStorage.removeItem('cart');
-  document.querySelector('.cart-quantity').innerHTML=quantity;
+  document.querySelector('.js-cart-quantity').innerHTML=quantity;
   update_cart();
 }
 function update_cart()
 {
   quantity=0;
   cart.forEach((items)=>quantity+=items.cart_quantity)
-  console.log(cart);
-  document.querySelector('.cart-quantity').innerHTML=quantity;
   localStorage.setItem('cart',JSON.stringify(cart));
 }
-window.onload=update_cart;
+export function update()
+{
+  quantity=0;
+  cart.forEach((items)=>quantity+=items.cart_quantity)
+  localStorage.setItem('cart',JSON.stringify(cart));
+  return quantity;
+}

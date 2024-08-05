@@ -1,7 +1,6 @@
 import {products} from '../data/products.js'
-import {cart,addcartItems,reset} from '../data/cart.js'
+import {update,addcartItems,reset} from '../data/cart.js'
 let temp='';
-let cart_count=0;
 products.forEach(product => 
     {
      temp+=`<div class="product-container">
@@ -57,8 +56,12 @@ document.querySelector('.products-grid').innerHTML=temp;
 let button=document.querySelectorAll('.js-add-button');
 button.forEach((log)=>
 {
-  log.addEventListener('click',()=>addcartItems(log))
+  log.addEventListener('click',()=>
+    {addcartItems(log);
+    document.querySelector('.js-cart-quantity').innerHTML=update();
+    })
 })
+window.onload=document.querySelector('.js-cart-quantity').innerHTML=update();
 const re=document.querySelector('.reset');
 re.addEventListener('click',reset);
 // ------------------------------------------------------------------//

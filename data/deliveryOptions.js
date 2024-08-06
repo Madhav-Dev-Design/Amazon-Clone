@@ -16,3 +16,15 @@ export let deliveryoptions=
         priceCents:999,
     }
 ]
+export function get_delivery_item(Id)
+{
+    let matched;
+    deliveryoptions.forEach((delivery_item)=>
+    {
+        if(delivery_item.delivery_Id===Id)
+        {
+            matched=delivery_item;
+        }
+    })
+    return matched||matched[0];
+}

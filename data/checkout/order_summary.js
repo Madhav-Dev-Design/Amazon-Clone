@@ -1,21 +1,18 @@
 import {del_cart,cart, update_delivery_date} from '../cart.js'
-import {products} from '../products.js'
+import {get_item} from '../products.js'
 import {format_currency} from '../../js-Files/Utilities/format.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
-import { deliveryoptions } from '../deliveryOptions.js'
+import { deliveryoptions,get_delivery_item } from '../deliveryOptions.js'
+import { render_Payment_Summary } from './payment_summary.js'
+
 export function render_order_summary()
 {
   let html=''
   cart.forEach(cart_items => 
     {
     let cart_id;
-    let matching_product;
-      cart_id=cart_items.cart_id;
-      products.forEach((product_item)=>
-      {
-          if(cart_id===product_item.id)
-          matching_product=product_item;
-      })
+    cart_id=cart_items.cart_id;
+    let matching_product=get_item(cart_id);
       html+=`<div class="cart-item-container cart-container-${matching_product.id}">
               <div class="delivery-date">
                 Delivery date: ${change_date(cart_items.option_id)}
@@ -108,14 +105,7 @@ export function render_order_summary()
   // ---------------------Changing the Date-----------------------------
   function change_date(Id)
   {
-    let matched;
-    deliveryoptions.forEach((delivery_item)=>
-    {
-      if(delivery_item.delivery_Id===Id)
-      {
-        matched=delivery_item;
-      }
-    })
+    let matched=get_delivery_item(Id);
     return get_date(matched.delivery_days);
   }
   // -----------Making Delivery Date Interactive-------------//
@@ -127,6 +117,7 @@ export function render_order_summary()
       const {productId,deliveryId}=list_item.dataset;
       update_delivery_date(productId,deliveryId);
       render_order_summary();
+      render_Payment_Summary();
     })
   })
 }

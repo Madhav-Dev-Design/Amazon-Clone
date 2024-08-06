@@ -1,3 +1,4 @@
+import { render_Payment_Summary } from "./checkout/payment_summary.js";
 export let cart=JSON.parse(localStorage.getItem('cart'))||[];
 let quantity=0;
 export function addcartItems(log)
@@ -55,6 +56,7 @@ export function del_cart(Id)
   })
   cart=updated_cart;
   update_cart();
+  render_Payment_Summary();
 }
 export function update_delivery_date(product_id,delivery_id)
 {

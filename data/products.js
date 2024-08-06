@@ -1,3 +1,15 @@
+export function get_item(product_id)
+{
+  let matched;
+  products.forEach((product_item)=>
+  {
+      if(product_id===product_item.id)
+      {
+          matched=product_item;
+      }
+  })
+  return matched;
+}
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -656,5 +668,5 @@ export const products = [
       "apparel",
       "mens"
     ]
-  }
+  },
 ];

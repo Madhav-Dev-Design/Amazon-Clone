@@ -1,16 +1,4 @@
-export let cart=JSON.parse(localStorage.getItem('cart'))||
-[
-  {
-    cart_id:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    cart_quantity:1,
-    option_id:'1'
-  },
-  {
-    cart_id:'15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    cart_quantity:2,
-    option_id:'2'
-  }
-];
+export let cart=JSON.parse(localStorage.getItem('cart'))||[];
 let quantity=0;
 export function addcartItems(log)
 {
@@ -66,7 +54,18 @@ export function del_cart(Id)
     }
   })
   cart=updated_cart;
-  console.log(cart);
-  // ----------Updates_the_quantity_of_the cart---------------//
+  update_cart();
+}
+export function update_delivery_date(product_id,delivery_id)
+{
+  let matched;
+  cart.forEach((cart_item)=>
+  {
+    if(cart_item.cart_id===product_id)
+    {
+      matched=cart_item;
+    }
+  })
+  matched.option_id=delivery_id;
   update_cart();
 }

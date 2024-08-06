@@ -1,4 +1,5 @@
 import { render_Payment_Summary } from "./checkout/payment_summary.js";
+
 export let cart=JSON.parse(localStorage.getItem('cart'))||[];
 let quantity=0;
 export function addcartItems(log)

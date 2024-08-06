@@ -4,6 +4,7 @@ import {format_currency} from '../../js-Files/Utilities/format.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 import { deliveryoptions,get_delivery_item } from '../deliveryOptions.js'
 import { render_Payment_Summary } from './payment_summary.js'
+import { checkout_quantity } from '../checkout.js'
 
 export function render_order_summary()
 {
@@ -52,6 +53,7 @@ export function render_order_summary()
       `
     });
   document.querySelector('.order-summary').innerHTML=html;
+
   // -------------------Delete-Functionality----------------//
   let del_array=document.querySelectorAll('.js-delete-link');
   let del_Id;
@@ -63,8 +65,19 @@ export function render_order_summary()
       del_cart(del_Id);
       const container=document.querySelector(`.cart-container-${del_Id}`);
       container.remove();
+      checkout_quantity();
+      add_gif();
     })
   })
+  //-----------------------------------------------//
+  function add_gif()
+  {
+    if(cart.length===0)
+    {
+      document.querySelector('.order-summary').innerHTML=` <img class="gif"src="https://cdn.dribbble.com/users/2046015/screenshots/4591856/media/314560586aef7f1eae694d78a015c69c.gif">`
+    }
+  }
+  add_gif();
   //----------------Day-Js------------------------
   function get_date(delivery_days)
   {

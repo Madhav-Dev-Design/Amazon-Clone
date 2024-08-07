@@ -8,6 +8,7 @@ export function render_Payment_Summary()
     let matched_cart,matched_delivery;
     let Item_price=0;
     let shipping_charge=0;
+    let html;
     cart.forEach((cart_item)=>
     {
         matched_cart=get_item(cart_item.cart_id);
@@ -21,8 +22,7 @@ export function render_Payment_Summary()
     let tax=total_before*0.1;
     let total=(total_before+tax);
     // -------------View--------(Generate the HTML)-----------//
-    let html;
-    html=`<div class="payment-summary js-payment-summary">
+    html=`
           <div class="payment-summary-title">
             Order Summary
           </div>
@@ -54,7 +54,6 @@ export function render_Payment_Summary()
 
           <button class="place-order-button button-primary">
             Place your order
-          </button>
-        </div>`
-        document.querySelector('.js-payment-summary').innerHTML=html;
-}
+          </button>`
+          document.querySelector('.payment-summary').innerHTML=html;
+        }

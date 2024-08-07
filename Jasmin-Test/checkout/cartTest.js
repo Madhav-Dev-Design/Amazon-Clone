@@ -1,6 +1,11 @@
 import { addcartItems,cart,cartLoad } from "../../data/cart.js"
 describe('Test Suite : Add to Cart',()=>
 {
+  document.querySelector('.test-container').innerHTML=`
+    <div class="order-summary"></div>
+    <div class="payment-summary"></div>
+    <div class="js-return-to-home-link"></div>`
+    
     it('Adds a New-Item to cart',()=>
     {
       spyOn(localStorage,'setItem');

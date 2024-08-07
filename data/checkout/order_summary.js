@@ -30,14 +30,14 @@ export function render_order_summary()
                   <div class="product-price">
                     $${format_currency(matching_product.priceCents)}
                   </div>
-                  <div class="product-quantity">
+                  <div class="product-quantity-${matching_product.id}">
                     <span>
                       Quantity: <span class="quantity-label">${cart_items.cart_quantity}</span>
                     </span>
                     <span class="update-quantity-link link-primary">
                       Update
                     </span>
-                    <span class="delete-quantity-link link-primary js-delete-link" data-product-id=${matching_product.id}>
+                    <span class="delete-quantity-link delete-link-${matching_product.id} link-primary js-delete-link" data-product-id=${matching_product.id}>
                       Delete
                     </span>
                   </div>

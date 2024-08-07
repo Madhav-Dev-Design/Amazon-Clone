@@ -1,11 +1,14 @@
 import { render_Payment_Summary } from "./checkout/payment_summary.js";
-
-export let cart=JSON.parse(localStorage.getItem('cart'))||[];
+export let cart;
+cartLoad()
+export function cartLoad()
+{
+   cart=JSON.parse(localStorage.getItem('cart'))||[];
+}
 let quantity=0;
-export function addcartItems(log)
+export function addcartItems(id)
 {
   let matched_item;
-  const id=log.dataset.productId;
   cart.forEach((cart_items)=>
   {
     if(cart_items.cart_id===id)

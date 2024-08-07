@@ -61,7 +61,7 @@ button.forEach((log)=>
   log.addEventListener('click',()=>
     {
       id=log.dataset.productId;
-      addcartItems(log);
+      addcartItems(id);
       document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
     })
 })

@@ -1,4 +1,4 @@
-import { format_currency } from "../js-Files/Utilities/format.js";
+import { format_currency } from "../../js-Files/Utilities/format.js";
 
 describe('Test Suite: Format Currency',()=>
 {

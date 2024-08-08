@@ -3,17 +3,19 @@ import { render_Payment_Summary } from "./checkout/payment_summary.js";
 
 class Cart
 {
+    #key;
+    cartItems=[];
+
     constructor(key)
     {
-        this.cartItems=[];
-        this.key=key;
-        this.cartLoad();
+        this.#key=key;
+        this.#cartLoad();
     }
     //Saves to Local Storage//
 
-    cartLoad() 
+    #cartLoad() 
     {
-        this.cartItems=JSON.parse(localStorage.getItem(this.key))||[];
+        this.cartItems=JSON.parse(localStorage.getItem(this.#key))||[];
     }
 
     //Add cart Items//
@@ -45,11 +47,11 @@ class Cart
 
     //Reset Functionality//
 
-    reset= function()
+    reset()
     {
         let quantity=0;
         this.cartItems=[];
-        localStorage.removeItem(this.key);
+        localStorage.removeItem(this.#key);
         document.querySelector('.js-cart-quantity').innerHTML=quantity;
         this.update_cart();
     }
@@ -58,7 +60,7 @@ class Cart
 
     update_cart=function()
     {
-    localStorage.setItem(this.key,JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#key,JSON.stringify(this.cartItems));
     }
 
     //Quantity Update//
@@ -102,9 +104,18 @@ class Cart
       matched.option_id=delivery_id;
       this.update_cart();
     }
+
+    getCurrentKey()
+    {
+        return this.#key;
+    }
 }
 const cart=new Cart('cart-oop');
+console.log('Initial Key',cart.getCurrentKey());
 cart.addcartItems('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+cart.key='aba';
+cart.key='asdacasc';
+console.log('Current Key:',cart.getCurrentKey());
 console.log(cart);
 const business_cart=new Cart('bus-cart-oop');
 console.log(business_cart);

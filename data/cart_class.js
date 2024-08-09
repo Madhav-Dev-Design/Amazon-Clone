@@ -1,4 +1,3 @@
-import { addcartItems } from "./cart.js";
 import { render_Payment_Summary } from "./checkout/payment_summary.js";
 
 class Cart

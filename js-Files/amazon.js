@@ -67,3 +67,5 @@ button.forEach((log)=>
 window.onload=document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
 const re=document.querySelector('.reset');
 re.addEventListener('click',reset);
+
+

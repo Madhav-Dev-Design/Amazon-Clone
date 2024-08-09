@@ -11,7 +11,6 @@ export function get_item(product_id)
   })
   return matched;
 }
-
 class Product
 {
   id;
@@ -40,7 +39,27 @@ class Product
     return `$${format_currency(this.priceCents)}`
   }
 
+  displaysizechart()
+  {
+    return ''; 
+  }
 }
+
+export class clothing extends Product
+{
+  sizeChartLink;
+  constructor(item)
+  {
+    super(item);
+    this.sizeChartLink=item.sizeChartLink;
+  }
+  //Polymorphism
+  displaysizechart()
+  {
+    return `<a href=${this.sizeChartLink} target="_blank">Size Chart</a>`; 
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -86,7 +105,7 @@ export const products = [
       "mens"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "/images/clothing-size-chart.png"
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -210,7 +229,7 @@ export const products = [
       "apparel"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "/images/clothing-size-chart.png"
   },
   {
     id: "aad29d11-ea98-41ee-9285-b916638cac4a",
@@ -353,7 +372,7 @@ export const products = [
       "apparel"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "/images/clothing-size-chart.png"
   },
   {
     id: "a93a101d-79ef-4cf3-a6cf-6dbe532a1b4a",
@@ -402,7 +421,7 @@ export const products = [
       "mens"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "/images/clothing-size-chart.png"
   },
   {
     id: "b86ddc8b-3501-4b17-9889-a3bad6fb585f",
@@ -702,5 +721,9 @@ export const products = [
   },
 ].map((item)=>
 {
+  if(item.type==='clothing')
+  {
+    return new clothing(item);
+  }
   return new Product(item);
 });

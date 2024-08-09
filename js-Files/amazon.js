@@ -1,6 +1,5 @@
 import {products} from '../data/products.js'
 import {quantity_update,addcartItems,reset} from '../data/cart.js'
-import { format_currency } from './Utilities/format.js';
 let temp='';
 products.forEach(product => 
     {
@@ -39,7 +38,7 @@ products.forEach(product =>
               <option value="10">10</option>
             </select>
           </div>
-
+          ${product.displaysizechart()}
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">

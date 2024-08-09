@@ -111,10 +111,7 @@ class Cart
     }
 }
 const cart=new Cart('cart-oop');
-console.log('Initial Key',cart.getCurrentKey());
 cart.addcartItems('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
 cart.key='aba';
-console.log('Current Key:',cart.getCurrentKey());
-console.log(cart);
 const business_cart=new Cart('bus-cart-oop');
-console.log(business_cart);
+business_cart.addcartItems('e43638ce-6aa0-4b85-b27f-e1d07eb678c6')

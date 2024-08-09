@@ -21,6 +21,7 @@ describe('Test Suite : Add to Cart',()=>
       expect(cart[0].cart_id).toEqual('bc2847e9-5323-403f-b7cf-57fde044a955');
       expect(cart[0].cart_quantity).toEqual(1);
     });
+    
     it('Adds an Existing Item to cart - Flaky Tasks',()=>
     {
       spyOn(localStorage,'setItem');

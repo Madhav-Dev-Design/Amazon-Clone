@@ -1,3 +1,4 @@
+import { format_currency } from "../js-Files/Utilities/format.js";
 export function get_item(product_id)
 {
   let matched;
@@ -11,7 +12,8 @@ export function get_item(product_id)
   return matched;
 }
 
-class Product{
+class Product
+{
   id;
   image;
   name;
@@ -27,6 +29,17 @@ class Product{
     this.priceCents=item.priceCents;
     this.keywords=item.keywords;
   }
+
+  getStarsUrl()
+  {
+    return `/images/ratings/rating-${this.rating.stars*10}.png`
+  }
+
+  getpriceCents()
+  {
+    return `$${format_currency(this.priceCents)}`
+  }
+
 }
 export const products = [
   {

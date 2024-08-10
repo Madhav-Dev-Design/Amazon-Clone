@@ -1,7 +1,29 @@
 import {products,load} from '../data/products.js'
 import {quantity_update,addcartItems,reset} from '../data/cart.js'
+import { loadCart } from '../data/products.js';
 let temp='';
-load(render_products);
+// Promise//
+Promise.all([new Promise((resolve)=>
+  {
+    load(()=>
+    {
+      resolve();
+    })
+  }),
+  new Promise((resolve)=>
+    {
+      loadCart(()=>
+      {
+        resolve();
+      })
+    })
+])
+.then(()=>
+{
+  render_products();
+})
+// Call - Back
+// load(render_products);
 function render_products()
 {
     products.forEach(product => 

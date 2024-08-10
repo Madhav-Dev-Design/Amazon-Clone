@@ -2,7 +2,19 @@ import { render_order_summary } from "./checkout/order_summary.js";
 import { render_Payment_Summary } from "./checkout/payment_summary.js";
 import { quantity_update } from "./cart.js";
 import {load} from '../data/products.js';
-load(()=>{
+//Promise
+new Promise((resolve)=>
+    {
+    load(()=>{
+        resolve();
+    });
+    }).then(()=>{
+        render_order_summary();
+        render_Payment_Summary();
+    });
+//Call - Back
+load(()=>
+{
     render_Payment_Summary();
     render_order_summary();
 })

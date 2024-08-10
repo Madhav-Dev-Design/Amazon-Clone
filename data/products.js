@@ -48,8 +48,8 @@ export class clothing extends Product
     return `<a href=${this.sizeChartLink} target="_blank">Size Chart</a>`; 
   }
 }
-
 export let products=[];
+
 export function load(render_products)
 {
 const xhr=new XMLHttpRequest();
@@ -68,6 +68,7 @@ xhr.addEventListener(('load'),()=>
 xhr.open('GET','https://supersimplebackend.dev/products')
 xhr.send();
 }
+
 export function get_item(product_id)
 {
   let matched;
@@ -79,4 +80,16 @@ export function get_item(product_id)
       }
   })
   return matched;
+}
+
+export function loadCart(render)
+{
+const xcr=new XMLHttpRequest();
+xcr.open('GET','https://supersimplebackend.dev/cart');
+xcr.send();
+xcr.addEventListener('load',()=>
+{
+  console.log(xcr.response);
+  render();
+})
 }

@@ -1,5 +1,5 @@
 import { render_Payment_Summary } from "./checkout/payment_summary.js";
-export function Cart(key)
+function Cart(key)
 {
   const cart=
 {

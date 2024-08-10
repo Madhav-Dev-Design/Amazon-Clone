@@ -1,5 +1,5 @@
 import {cart, quantity_update} from '../cart.js'
-import { get_item } from '../products.js'
+import { get_item } from '../products.js';
 import { format_currency } from '../../js-Files/Utilities/format.js';
 import { get_delivery_item } from '../deliveryOptions.js';
 export function render_Payment_Summary()
@@ -13,7 +13,6 @@ export function render_Payment_Summary()
     {
         matched_cart=get_item(cart_item.cart_id);
         Item_price+=(matched_cart.priceCents)*cart_item.cart_quantity;
-
         matched_delivery=(get_delivery_item(cart_item.option_id));
         shipping_charge+=(matched_delivery.priceCents);
         format_currency(shipping_charge);
@@ -56,4 +55,4 @@ export function render_Payment_Summary()
             Place your order
           </button>`
           document.querySelector('.payment-summary').innerHTML=html;
-        }
+}

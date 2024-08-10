@@ -134,4 +134,3 @@ export function render_order_summary()
     })
   })
 }
-render_order_summary();

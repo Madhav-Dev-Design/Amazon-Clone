@@ -1,5 +1,7 @@
 import { render_order_summary } from "../../data/checkout/order_summary.js";
 import { cartLoad ,cart} from "../../data/cart.js";
+import {load} from '../../data/products.js';
+
 describe('Test Suite : Render_Order_summary',()=>
 {
 document.querySelector('.test-container').innerHTML=`
@@ -30,7 +32,14 @@ document.querySelector('.test-container').innerHTML=`
                 expect(document.querySelector(`.product-quantity-${p_2}`).innerText).toContain('Quantity: 2');
                 document.querySelector('.test-container').innerHTML='';
             });
-            
+    beforeAll((done)=>
+    {
+        load(()=>
+        {
+            done;
+        });
+        
+    })
     it('Removes a Product',()=>{
         document.querySelector('.test-container').innerHTML=`
         <div class="order-summary"></div>
@@ -52,7 +61,6 @@ document.querySelector('.test-container').innerHTML=`
                     }]);
                 });
                 cartLoad();
-                render_order_summary();
                 document.querySelector(`.delete-link-${p_1}`).click();
                 expect(document.querySelectorAll('.cart-item-container').length).toEqual(1);
                 expect(cart[0].cart_id).toEqual(p_2);

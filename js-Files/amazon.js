@@ -22,8 +22,9 @@ Promise.all([new Promise((resolve)=>
 {
   render_products();
 })
-// Call - Back
-// load(render_products);
+/*Call - Back
+ load(render_products);
+ */
 function render_products()
 {
     products.forEach(product => 

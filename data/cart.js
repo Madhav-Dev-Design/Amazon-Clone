@@ -25,7 +25,7 @@ export function addcartItems(id)
     cart.push({
       cart_id:id,
       cart_quantity:1,
-      option_id:'2'
+      option_id:'1'
     })
   }
   update_cart();

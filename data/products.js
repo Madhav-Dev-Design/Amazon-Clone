@@ -50,23 +50,24 @@ export class clothing extends Product
 }
 export let products=[];
 
-export function load(render_products)
+export function fetchResponse()
 {
-const xhr=new XMLHttpRequest();
-xhr.addEventListener(('load'),()=>
-{
-  products=JSON.parse(xhr.response).map((item)=>
+  const verification=
+  fetch('https://supersimplebackend.dev/products').then((response)=>
   {
-    if(item.type==='clothing')
+    return response.json();
+  }).then((data)=>
+  {
+    products=data.map((item)=>
     {
-      return new clothing(item);
-    }
-    return new Product(item);
-  });
-  render_products();
-})
-xhr.open('GET','https://supersimplebackend.dev/products')
-xhr.send();
+      if(item.type==='clothing')
+      {
+        return new clothing(item);
+      }
+      return new Product(item);
+    })
+  })
+  return verification;
 }
 
 export function get_item(product_id)
@@ -89,7 +90,28 @@ xcr.open('GET','https://supersimplebackend.dev/cart');
 xcr.send();
 xcr.addEventListener('load',()=>
 {
-  console.log(xcr.response);
   render();
 })
 }
+
+
+/*Practiced without Fetch()
+export function load(render_products)
+{
+const xhr=new XMLHttpRequest();
+xhr.addEventListener(('load'),()=>
+{
+  products=JSON.parse(xhr.response).map((item)=>
+  {
+    if(item.type==='clothing')
+    {
+      return new clothing(item);
+    }
+    return new Product(item);
+  });
+  render_products();
+})
+xhr.open('GET','https://supersimplebackend.dev/products')
+xhr.send();
+}
+*/

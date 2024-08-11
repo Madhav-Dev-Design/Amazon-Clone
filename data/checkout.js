@@ -12,9 +12,15 @@ checkout_quantity();
 
 async function loadPage()
 {
-    await fetchResponse();
-    render_Payment_Summary();
-    render_order_summary();
+    try{
+        await fetchResponse();
+        render_Payment_Summary();
+        render_order_summary();
+    }
+    catch
+    {
+        console.log('Error:Products Undefined');
+    }
 }
 loadPage();
 /*

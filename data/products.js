@@ -69,7 +69,6 @@ export function fetchResponse()
   })
   return verification;
 }
-
 export function get_item(product_id)
 {
   let matched;
@@ -93,7 +92,6 @@ xcr.addEventListener('load',()=>
   render();
 })
 }
-
 
 /*Practiced without Fetch()
 export function load(render_products)

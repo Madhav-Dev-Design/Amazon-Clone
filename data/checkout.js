@@ -10,6 +10,23 @@ export function checkout_quantity()
 }
 checkout_quantity();
 
+async function loadPage()
+{
+    await fetchResponse();
+    render_Payment_Summary();
+    render_order_summary();
+}
+loadPage();
+/*
+
+//Call - Back -Practice
+
+load(()=>
+{
+    render_Payment_Summary();
+    render_order_summary();
+})
+// Fetch -Practice
 fetchResponse().then(()=>
 {
     render_Payment_Summary();
@@ -17,17 +34,7 @@ fetchResponse().then(()=>
 });
 
 
-
-/*
-Call - Back -Practice
-
-load(()=>
-{
-    render_Payment_Summary();
-    render_order_summary();
-})
-
-Promises
+//Promises - Practice
 
 new Promise((resolve)=>
 {
@@ -53,7 +60,7 @@ new Promise((resolve)=>
     })
 
 
-List of Promises - Practice
+//List of Promises - Practice
 
 Promise.all([
     new Promise((resolve)=>

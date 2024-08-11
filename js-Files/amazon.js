@@ -1,15 +1,27 @@
-import {products,load} from '../data/products.js'
+import {products, fetchResponse} from '../data/products.js'
 import {quantity_update,addcartItems,reset} from '../data/cart.js'
 import { loadCart } from '../data/products.js';
 let temp='';
 // Promise//
-Promise.all([new Promise((resolve)=>
-  {
-    load(()=>
+async function loadPage()
+{
+  await fetchResponse();
+  await new Promise((resolve)=>
     {
-      resolve();
+      loadCart(()=>
+      {
+        resolve();
+      })
     })
-  }),
+    render_products();
+  
+}
+loadPage();
+
+
+/* Fetch Response Practice
+Promise.all([
+  fetchResponse(),
   new Promise((resolve)=>
     {
       loadCart(()=>

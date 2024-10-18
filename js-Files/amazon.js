@@ -1,10 +1,11 @@
-import {products, fetchResponse} from '../data/products.js'
+import {products, fetchResponse, get_item} from '../data/products.js'
 import {quantity_update,addcartItems,reset} from '../data/cart.js'
 import { loadCart } from '../data/products.js';
 let temp='';
 // Promise//
 async function loadPage()
 {
+  document.querySelector('.products-grid').innerHTML=`<img style="margin:250px 80px 100px 680px; height: 150px;"src="/images/home-page/Animation - 1723394030156.gif">`;
   await fetchResponse();
   await new Promise((resolve)=>
     {
@@ -14,29 +15,9 @@ async function loadPage()
       })
     })
     render_products();
-  
 }
 loadPage();
 
-
-/* Fetch Response Practice
-Promise.all([
-  fetchResponse(),
-  new Promise((resolve)=>
-    {
-      loadCart(()=>
-      {
-        resolve();
-      })
-    })
-])
-.then(()=>
-{
-  render_products();
-})
-/*Call - Back
- load(render_products);
- */
 function render_products()
 {
     products.forEach(product => 
@@ -100,6 +81,7 @@ function render_products()
           id=log.dataset.productId;
           addcartItems(id);
           document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
+          card_appears();
         })
     })
     window.onload=document.querySelector('.js-cart-quantity').innerHTML=quantity_update();
@@ -107,3 +89,32 @@ function render_products()
     re.addEventListener('click',reset);
 }
 
+function card_appears(id)
+{
+  {
+    var popup = document.getElementById('popup');
+    popup.classList.add('show');
+
+    setTimeout(function() {
+        popup.classList.remove('show');
+    }, 3000); 
+  };
+}
+/* Fetch Response Practice
+Promise.all([
+  fetchResponse(),
+  new Promise((resolve)=>
+    {
+      loadCart(()=>
+      {
+        resolve();
+      })
+    })
+])
+.then(()=>
+{
+  render_products();
+})
+/*Call - Back
+ load(render_products);
+ */

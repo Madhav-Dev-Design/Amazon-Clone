@@ -45,7 +45,7 @@ export class clothing extends Product
   //Polymorphism
   displaysizechart()
   {
-    return `<a href=${this.sizeChartLink} target="_blank">Size Chart</a>`; 
+    return `<a href=${`/images/home-page/clothing-size-chart.png`} target="_blank">Size Chart</a>`; 
   }
 }
 export let products=[];
@@ -81,7 +81,6 @@ export function get_item(product_id)
   })
   return matched;
 }
-
 export function loadCart(render)
 {
 const xcr=new XMLHttpRequest();

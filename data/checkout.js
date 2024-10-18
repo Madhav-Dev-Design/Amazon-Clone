@@ -12,6 +12,7 @@ checkout_quantity();
 
 async function loadPage()
 {
+    document.querySelector('.order-summary').innerHTML=`<img style="margin:120px 50px 20px 400px" src="/images/home-page/Animation - 1723394030156.gif">`;
     try{
         await fetchResponse();
         render_Payment_Summary();
@@ -20,6 +21,7 @@ async function loadPage()
     catch
     {
         console.log('Error:Products Undefined');
+        document.querySelector('.order-summary').innerHTML=`Error Loading Products`;
     }
 }
 loadPage();

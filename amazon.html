@@ -3,17 +3,12 @@
   <head>
     <title>amazon-Google search</title>
 
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Load a font called Roboto from Google Fonts. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Here are the CSS files for this page. -->
     <link rel="stylesheet" href="/styles/shared/general.css">
     <link rel="stylesheet" href="/styles/shared/amazon-header.css">
     <link rel="stylesheet" href="/styles/pages/amazon.css">
@@ -22,11 +17,11 @@
   <body class> 
     <div class="amazon-header">
       <div class="amazon-header-left-section">
-        <a href="amazon.html" class="header-link">
+        <a href="/amazon/Amazon-Home.html" class="header-link">
           <img class="amazon-logo"
-            src="/images/amazon-logo-white.png">
+            src="/images/home-page/amazon-logo-white.png">
           <img class="amazon-mobile-logo"
-            src="/images/amazon-mobile-logo-white.png">
+            src="/images/home-page/amazon-logo.png">
         </a>
       </div>
 
@@ -51,13 +46,25 @@
         </a>
       </div>
     </div>
-    
     <div class="main">
+      <div id="popup" class="success-popup">
+        <div class="success-card">
+            <div class="icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#FFC107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="message">
+                <h2>Item Added</h2>
+                <p>Successfully!</p>
+            </div>
+        </div>
+      </div>
       <div class="products-grid">
         <!-- -----------------Dynamic Allocation---------------------->
         <!------------------------------------------------------------>
       </div>
-      <button class="reset">cart Reset</button>
+      <!-- <button class="reset">cart Reset</button> -->
     </div>
   </body>
   <script type="module" src="/js-Files/amazon.js"></script>
